@@ -1,0 +1,242 @@
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>投票</title>
+<script type="text/javascript" src="js/myimg.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+ 
+
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>寄信</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+
+
+
+
+        <style>
+            body {
+                background-color: #25274d;
+            }
+            
+            .contact {
+                padding: 4%;
+                height: 400px;
+            }
+            
+            .col-md-3 {
+                background: #ff9b00;
+                padding: 4%;
+                border-top-left-radius: 0.5rem;
+                border-bottom-left-radius: 0.5rem;
+            }
+            
+            .contact-info {
+                margin-top: 10%;
+            }
+            
+            .contact-info img {
+                margin-bottom: 15%;
+            }
+            
+            .contact-info h2 {
+                margin-bottom: 10%;
+            }
+            
+            .col-md-9 {
+                background: #fff;
+                padding: 3%;
+                border-top-right-radius: 0.5rem;
+                border-bottom-right-radius: 0.5rem;
+            }
+            
+            .contact-form label {
+                font-weight: 600;
+            }
+            
+            .contact-form button {
+                background: #25274d;
+                color: #fff;
+                font-weight: 600;
+                width: 25%;
+            }
+            
+            .contact-form button:focus {
+                box-shadow: none;
+            }
+        </style>
+
+    
+
+
+
+
+
+
+        <style>
+            .back-to-top {
+              display: none;
+              /* 默认是隐藏的，这样在第一屏才不显示 */
+              position: fixed;
+              /* 位置是固定的 */
+              bottom: 20px;
+              /* 显示在页面底部 */
+              right: 30px;
+              /* 显示在页面的右边 */
+              z-index: 99;
+              /* 确保不被其他功能覆盖 */
+              border: 1px solid #5cb85c;
+              /* 显示边框 */
+              outline: none;
+              /* 不显示外框 */
+              background-color: #fff;
+              /* 设置背景背景颜色 */
+              color: #5cb85c;
+              /* 设置文本颜色 */
+              cursor: pointer;
+              /* 鼠标移到按钮上显示手型 */
+              padding: 10px 15px 15px 15px;
+              /* 增加一些内边距 */
+              border-radius: 10px;
+              /* 增加圆角 */
+            }
+        
+            .back-to-top:hover {
+              background-color: #5cb85c;
+              /* 鼠标移上去时，反转颜色 */
+              color: #fff;
+            }
+          </style>
+
+
+    </head>
+    <body>
+
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">導覽頁</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="form.htm">會員註冊</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="formVote.htm">投票系統</a></li>               
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="query_gb.php">會員查詢</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="mail.htm">發送郵件</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="hw3.htm">身分證驗證</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+  
+
+        <form action="formVote.php" method="post">
+            <script style="font-size: 90px;">
+                    function validateForm(form){
+                        if (!verifyId(form.id.value)){
+                            alert("身分證資料有誤，不對喔\n為無效身分證");
+                            return(false);	
+                        }
+                        else{
+                            alert("歡迎!!身分證資料正確，送出！\n有效身分證");
+                            form.submit();}
+                        return(true);
+                    }
+                    
+                    function verifyId(id) {
+                        id = id.trim();
+                        verification = id.match("^[A-Z][12]\\d{8}$")
+                        if(!verification){
+                            return false
+                        }
+            
+                        let conver = "ABCDEFGHJKLMNPQRSTUVXYWZIO"
+                        let weights = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1]
+            
+                        id = String(conver.indexOf(id[0]) + 10) + id.slice(1);
+            
+                        checkSum = 0
+                        for (let i = 0; i < id.length; i++) {
+                            c = parseInt(id[i])
+                            w = weights[i]
+                            checkSum += c * w
+                        }
+                        
+                        return checkSum % 10 == 0
+                    }
+            </script>
+        
+            <div class="container contact">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="contact-info">
+                            
+                        
+                            <h2>投票系統</h2>
+                            
+                        </div>
+                    </div>
+
+
+                
+                    <div class="col-md-9">
+                        <div class="contact-form">
+           
+
+
+
+                                <form>
+                                    <div class="mb-3">
+                                      <label for="exampleInputEmail1" class="form-label">身分證字號：</label>
+                                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" id="id" placeholder="輸入身分證" name="uid">
+                                      
+                                    </div>
+                    
+
+                                
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" name="candidate" value="1">1<img src="images/c01.jpg" width="300px" hight="100px">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                        
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked name="gender" name="candidate" value="2">2<img src="images/c02.jpg" width="300px" hight="100px">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                        
+                                        </label>
+                                      </div><br>
+
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                  
+                                    <input type="submit" value="送出" onClick="validateForm(this.form)" class="btn btn-default">
+        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </form>
+       
+
+
+
+    </body>
+</html>

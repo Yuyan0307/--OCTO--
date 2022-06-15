@@ -1,0 +1,53 @@
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>投票</title>
+<script type="text/javascript" src="js/myimg.js"></script>
+</head>
+<body>
+<form action="formVote.php" method="post">
+<script style="font-size: 90px;">
+        function validateForm(form){
+            if (!verifyId(form.id.value)){
+                alert("身分證資料有誤，不對喔\n為無效身分證");
+                return(false);	
+            }
+            else{
+                alert("歡迎!!身分證資料正確，送出！\n有效身分證");
+                form.submit();}
+            return(true);
+        }
+        
+        function verifyId(id) {
+            id = id.trim();
+            verification = id.match("^[A-Z][12]\\d{8}$")
+            if(!verification){
+                return false
+            }
+
+            let conver = "ABCDEFGHJKLMNPQRSTUVXYWZIO"
+            let weights = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1]
+
+            id = String(conver.indexOf(id[0]) + 10) + id.slice(1);
+
+            checkSum = 0
+            for (let i = 0; i < id.length; i++) {
+                c = parseInt(id[i])
+                w = weights[i]
+                checkSum += c * w
+            }
+            
+            return checkSum % 10 == 0
+        }
+</script>
+身分證字號:<input type="text" name="username" id="id" required placeholder="請輸入身分證字號"><br>
+<input type="radio" name="candidate" value="1">1<img src="images/c01.jpg" width="300px" hight="100px"><br>
+<input type="radio" name="candidate" value="2">2<img src="images/c02.jpg"  width="300px" hight="100px"><br>
+<br>
+
+<br>
+<input type="submit" value="送出" onClick="validateForm(this.form)">
+</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>會員申請</title>
+    <script type="text/javascript" src="js/myimg.js"></script>
+</head>
+<form action="form.php" method="post">
+
+
+    帳號:
+    <input type="text" name="uid"><br> 密碼:
+    <input type="password" name="pid"><br> 性別:
+    <input type="radio" name="gender" value="1">男
+    <input type="radio" name="gender" value="0">女<br> 縣市:
+    <select name="city">
+    <option value="00">請選擇
+    <option value="02">台北市
+    <option value="04">台中市
+    <option value="07">高雄市	
+        
+</select><br> 興趣1:
+    <input type="text" name="interest1">
+    <br> 興趣2:
+    <input type="text" name="interest2">
+    <br> 興趣3:
+    <input type="text" name="interest3">
+    <br>
+    <input type="email" name="email">
+    <br> 留言:
+    <textarea cols="10" row="5" name="gossip">
+</textarea>
+    <input type="submit" name="送出">
+
+</form>
+
+</body>
+
+</html>
